@@ -1,0 +1,138 @@
+.form-input {
+    margin-bottom: 15px;
+}
+
+.file-upload-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.file-upload {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.file-name {
+    font-size: 14px;
+    color: #666;
+}
+
+.submit-button {
+    width: 100%;
+    background-color: #0070d2;
+    color: white;
+}
+
+.toast-message {
+    background-color: #f4f6f9;
+    border-left: 4px solid #0070d2;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.toast-message p {
+    margin: 0;
+}
+
+.slds-p-around_medium {
+    padding: 20px;
+}
+
+.custom-file-upload {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 12px;
+    cursor: pointer;
+    /*background-color: #0070d2;*/
+    background-color: #0f7cad;
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.2;
+    border: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.custom-file-upload:hover {
+    /*background-color: #005bb5;*/
+    background-color:#1176a4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.file-upload-input {
+    display: none;
+}
+
+.custom-file-upload lightning-icon {
+    margin-right: 0px;
+    transform: scale(0.8); /* Adjust the scale as needed */
+    display: inline-block; /* Ensure the icon remains inline */
+    vertical-align: middle; /* Align the icon with the text */
+}
+
+.starlabel {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #4a4a4a;
+}
+
+.file-upload-container {
+    margin-bottom: 20px;
+}
+.success-message {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 150px; /* Adjust this value as needed for vertical centering */
+}
+
+.success-icon {
+    color: green;
+    margin-bottom: 10px;
+}
+
+.success-text {
+    font-size: 18px;
+    color: green;
+    font-weight: bold;
+}
+
+.explore-button {
+    margin-top: 20px;
+}
+
+.jobDetailsForView {
+    padding: 15px;
+    background-color: #f4f6f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    height: 365px;
+}
+
+.jobDetailsForView.h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.jobDetailsForView p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.jobDetailsForView strong {
+    color: #333;
+}
+
+.lightning-output-field {
+    display: block;
+    margin-bottom: 10px;
+}

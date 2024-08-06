@@ -1,0 +1,16 @@
+<template>
+    <div class="jobrecords">
+        <lightning-layout>
+            <lightning-layout-item size="4">
+                <div class="filter">
+                    <c-filter-pannel onapplyfilters={applyFilterOnData}></c-filter-pannel>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="8">
+                <div class="records">
+                    <c-job-records></c-job-records>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout> 
+    </div>
+</template>

@@ -1,0 +1,74 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global" >
+    <aura:attribute name="navFrom" type="string"/>
+    <aura:attribute name="isUnavailablee" type="boolean" default="false"/>
+    <aura:attribute name="hourrwrapp" type="object"/>
+    <aura:attribute name="roundName" type="String"/>
+    <aura:attribute name="interviewerr" type="Interviewer__c" default="{'sobjectType': 'Interviewer__c'}"/>
+    <aura:attribute name="isapplicationdragevent" type="boolean" default="false"/>
+    <aura:attribute name="hrcompwidth" type="Integer"/>
+    <aura:attribute name="datestringg" type="String" />
+    <aura:attribute name="clndrdateee" type="date"/>
+    <aura:registerEvent name="InterviewDropEvent" type="c:Interview_Calender"/>
+    <aura:registerEvent name="showinterviewdetails" type="c:Interview_Calender"/>
+    <aura:registerEvent name="showoptionlistt" type="c:Interview_Calender"/>
+    <ltng:require scripts="{! $Resource.jquery224}" afterScriptsLoaded="{!c.doInit}"/>
+    <aura:method name="insertandSpliceInterview" action="{!c.doAction}" description="to insert interview">
+        <aura:attribute name="interrview" type="object"/>
+        <aura:attribute name="rounddName" type="String" />
+        <aura:attribute name="interviwerIdd" type="String" />
+        <aura:attribute name="strthouur" type="Integer" />
+        <aura:attribute name="indxnum" type="Integer" />
+        <aura:attribute name="actiontype" type="String" />
+        <aura:attribute name="dtstrr" type="String" />
+    </aura:method>
+    <aura:method name="drageventspecifier" action="{!c.chngbolen}" description="to specify event is related to application">
+        <aura:attribute name="multiuse" type="String"/>
+    </aura:method>
+    <td style="width:4.16666667%;height:40px;border-left: 1px #dddbda solid;position:relative;z-index:1;">
+        <aura:if isTrue="{!v.hourrwrapp.isoperatinghour}">
+            
+            <div style="width:100%;height:100%;z-index:2;" ondrop="{!c.onDrop}" ondragover="{!c.allowDrop}"
+                 onmouseover="{!c.showInf}" onmouseout="{!c.hideInf}" id="test1" aura:id="hurcompp" oncontextmenu="{!c.showstatusdeleteaddfeedback}">
+                <table style="width:100%;height:100%;">
+                    <aura:if isTrue="{!v.isUnavailablee}">
+                        <tr style="width:100%;" >
+                            <td style="background-color:#f5f4f2;font-size:8px;width:100%;color:black;">
+                                <center>
+                                <lightning:icon iconName="utility:error" alternativeText="Unavailable" title="Unavailable" size="xx-small"/>
+                                    </center>
+                            </td>
+                        </tr>
+                        <aura:set attribute="else">
+                            <aura:iteration items="{!v.hourrwrapp.interviewScheduledstartthishour}" var="item">
+                                <tr style="width:100%;" >
+                                    <aura:if isTrue="{!item.showIntrvw}">
+                                        <td style="width:100%;padding-top:1px;padding-bottom:1px;">
+                                            
+                                            <c:Interviewer_Interview_Cmp intervww="{!item}" interviewr="{!v.interviewerr}" 
+                                                                         strthrr="{!v.hourrwrapp.strthr}" availlength="{!v.hourrwrapp.maxavillength}" 
+                                                                         hrcomppwidthh="{!v.hrcompwidth}"
+                                                                         aura:id="interviewcompp"/>
+                                            
+                                        </td>
+                                        <aura:set attribute="else">
+                                            <td style="background-color:#f5f4f2;font-size:8px;width:100%;color:black">
+                                                <center>
+                                                    <lightning:icon iconName="utility:lock" alternativeText="engaged" title="engage" size="xx-small"/>
+                                                </center>
+                                            </td>
+                                        </aura:set>
+                                    </aura:if>
+                                </tr>
+                            </aura:iteration>
+                        </aura:set>
+                    </aura:if>
+                </table>
+            </div>
+            <aura:set attribute="else">
+                <div style="width:100%;height:100%;z-index:2;background-color:GRAY;opacity:0.1;">
+                </div>
+            </aura:set>
+        </aura:if>
+    </td>
+</aura:component>

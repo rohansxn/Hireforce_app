@@ -1,0 +1,13 @@
+.divcss.THIS {
+    width:100%;
+    background-color:#eecd4b;
+    padding:0.5rem;
+    border-radius:0.25rem;
+    font-size:11px;
+    cursor:pointer;
+    -webkit-user-drag: element;
+    -khtml-user-drag: element;
+}
+.THIS [draggable=true] {
+    -khtml-user-drag: element;
+}

@@ -1,0 +1,29 @@
+<template>
+    <template if:true={filterJobRecords.length}>
+        <div class="job-list">
+            <template for:each={filterJobRecords} for:item="jobs">
+                <div key={jobs.Id} class="job-container" onclick={handleRecordClick} data-id={jobs.Id}>
+                    <div class="job-header">
+                        <p class="department">Department: {jobs.Department__c}</p>
+                        <h2 class="job-title">{jobs.Name}</h2>
+                    </div>
+                    <div class="job-details">
+                        <p class="location">
+                            <lightning-icon icon-name="utility:location" alternative-text="location" title="Location"></lightning-icon> &nbsp;
+                            {jobs.Country__c} - {jobs.State_Province__c}
+                        </p>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </template>
+    <template if:false={filterJobRecords.length}>
+        <div class="no-job-container">
+            <div class="no-jobs-message">
+                <lightning-icon icon-name="utility:search" alternative-text="No jobs found" size="medium"></lightning-icon> &nbsp;
+                <span >No jobs found. Please try to modify the filters and search again.</span>
+            </div>
+            
+        </div>
+    </template>
+</template>

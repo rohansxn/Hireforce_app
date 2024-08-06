@@ -1,0 +1,38 @@
+<template>
+   <lightning-card>
+      <div class="slds-global-header__item slds-float_right" if:true={userName}>
+         <ul class="slds-global-actions" style="margin-right: 40px;">
+
+             <li class="slds-global-actions__item">
+                 <div class="slds-dropdown-trigger slds-dropdown-trigger_click">
+                  <button class="icon-button" title="Profile" onclick={handleshowloggOffButton}>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                     </svg>
+                 </button>
+                     <section if:true={showLoggOffButton} aria-describedby="dialog-body-id-114"
+                         aria-label="My Favorites" class="slds-popover slds-nubbin_top slds-dynamic-menu"
+                         role="dialog" style="position:absolute;left:-1rem;top:42px; width: 82px;">
+                         <div class="slds-popover__body slds-p-horizontal_none" id="dialog-body-id-14">
+                             <div id="listbox-unique-id" role="listbox">
+                                 <ul class="slds-listbox slds-listbox_vertical slds-dropdown_length-10"
+                                     role="group" aria-label="My Favorites">
+                                     <li if:true={userName} class="slds-listbox__item"><p class="slds-text-link_reset slds-align_absolute-center user-name">{userName}</p></li>
+                                     <li role="presentation" class="slds-listbox__item">
+                                         <a onclick={handleLogout}
+                                             class="slds-text-link_reset slds-text-link slds-align_absolute-center">Log
+                                             Out</a>                                               
+                                     </li>
+                                 </ul>
+                             </div>
+                         </div>
+                     </section>
+                 </div>
+             </li>
+         </ul>
+     </div>
+     
+    <h1><strong>Jobs</strong></h1>
+   </lightning-card> 
+</template>

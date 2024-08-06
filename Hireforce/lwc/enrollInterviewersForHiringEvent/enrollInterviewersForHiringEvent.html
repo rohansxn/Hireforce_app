@@ -1,0 +1,41 @@
+<template>
+    <div class="slds-m-top_medium slds-m-bottom_x-large">
+        <span class=""> <!--slds-m-bottom_medium-->
+            Filter Interviewers by Name OR Hiring Manager OR Skill OR Interviewing rounds.
+        </span>
+        <div class=""> <!--slds-p-around_medium lgc-bg-->
+            <lightning-layout>
+                <lightning-layout-item size="10">
+                    <lightning-input type="text" variant="label-hidden" label="Enter some text" value={srchtxt} onchange={valueChange}>
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="2">
+                    <lightning-button variant="Brand" label="Search" onclick={fetchRecords} class="slds-m-left_small">                    
+                    </lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+            <div if:true={error} class="slds-text-color_error slds-text-align_center slds-m-top_medium">
+                <div>{error}</div>
+            </div>
+        </div>
+    </div>
+<lightning-Card title="Interviewers List" icon-name="standard:avatar">
+    <lightning-button   variant="Neutral"
+                        label="Enroll Interviewers"
+                        title="Enroll Interviewers"
+                        onclick={getSelectedRec} 
+                        slot="actions"
+                        icon-name="utility:check">
+    </lightning-button>
+    <div style="border-top: 1px solid rgb(221 219 218);">
+        <!-- datatable -->
+        <lightning-datatable
+                key-field="Id"
+                data={intvrs}
+                columns={columns}
+                column-widths-mode="fixed">
+        </lightning-datatable>
+        <!-- /datatable -->
+    </div>
+</lightning-Card>
+</template>

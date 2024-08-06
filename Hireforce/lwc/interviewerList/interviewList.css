@@ -1,0 +1,32 @@
+/* interviewerList.css */
+:host {
+    display: block;
+    padding: 1rem;
+}
+
+.scrollable-container {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+.custom-datatable {
+    border: none;
+    box-shadow: none;
+}
+
+.center-align {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: red; /* Red background for the button */
+    color: white; /* White text color */
+}
+
+.slds-button {
+    width: 100%;
+}

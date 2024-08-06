@@ -1,0 +1,93 @@
+.job-detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    height: 450px;
+    overflow-y: auto;
+}
+
+.job-header {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.job-title {
+    margin: 0;
+    color: #003e6c;
+}
+
+.job-department, .job-location, .job-level {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.job-department lightning-icon, .job-location lightning-icon, .job-level lightning-icon {
+    margin-right: 0.5rem;
+    color: #0070d2;
+}
+
+.skills-required {
+    margin-top: 1.5rem;
+}
+
+.skills-heading {
+    margin-bottom: 0.5rem;
+    color: #003e6c;
+}
+
+.slds-list_horizontal {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.slds-item {
+    display: flex;
+    align-items: left;
+    font-size: 0.875rem;
+    color: #333;
+}
+
+.check-icon {
+    margin-right: 0.5rem;
+    color: #4caf50; 
+    width: 20px; 
+    height: 20px; 
+}
+
+.roles-responsibilities {
+    margin-top: 1.5rem;
+}
+
+.job-footer {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+
+.footer {
+    background-color: #001f3f;
+    color: #ffffff;
+    padding: 1rem 0;
+    text-align: center;
+    margin-top: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-content p {
+    margin: 0.5rem 0;
+}

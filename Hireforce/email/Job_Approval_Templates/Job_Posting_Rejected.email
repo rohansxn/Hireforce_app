@@ -1,0 +1,7 @@
+Hi {! Job__c.CreatedBy},
+
+Please find the below job posting submitted for approval has been rejected and sent back for correction.
+{!Job__c.Link}
+
+Regards,
+HR Admin

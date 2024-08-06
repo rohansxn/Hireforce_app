@@ -1,0 +1,46 @@
+<template>
+    <div class="componentHeight">
+    <c-custom-toast></c-custom-toast>
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </template>
+
+        <template if:false={recordCreated}>
+            <lightning-card title="Application" class="card">
+                <div class="jobDetailsForView">
+                    <h2>Job Details</h2>
+                    <p><strong>Name:</strong> {jobDetails.Name}</p>
+                    <p><strong>Country:</strong> {jobDetails.Country__c}</p>
+                    <p><strong>State/Province:</strong> {jobDetails.State_Province__c}</p>
+
+                    <div class="slds-p-around_medium form-container">
+                        <lightning-record-edit-form object-api-name="Application__c" onsuccess={handleSuccess} onerror={handleError} onsubmit={handleSubmit}>
+                        <lightning-messages></lightning-messages>
+
+                        <lightning-input label="Phone Number" value={phoneNumber} onchange={handlePhoneChange} type="tel" required class="form-input"></lightning-input>
+
+                        <div class="file-upload-container">
+                            <label class="custom-file-upload">
+                                <lightning-icon icon-name="action:upload" alternative-text="Upload" size="small"></lightning-icon>
+                                <span>Upload Resume</span>
+                                <input type="file" accept=".pdf,.doc,.docx" onchange={handleFileChange} multiple class="file-upload-input"/>
+                            </label> &nbsp;
+                            <span>{fileName}</span>
+                        </div>
+                        <lightning-button variant="brand" type="submit" label="Submit" class="slds-m-top_medium submit-button" disabled={isSubmitDisabled}></lightning-button> &nbsp;
+                        <lightning-button variant="neutral" label="Cancel" onclick={cancelApplication}></lightning-button>   
+                        </lightning-record-edit-form>
+                    </div>
+
+                </div>
+            </lightning-card>
+        </template>
+        <template if:true={recordCreated}>
+            <div class="success-message">
+                <lightning-icon icon-name="utility:success" alternative-text="Success" size="medium" class="success-icon"></lightning-icon>
+                <span class="success-text">You have successfully applied for this job!</span><br/>
+                <lightning-button label="Explore more jobs" onclick={handleExploreMore} class="explore-button"></lightning-button>
+            </div>
+        </template>
+    </div>
+</template>

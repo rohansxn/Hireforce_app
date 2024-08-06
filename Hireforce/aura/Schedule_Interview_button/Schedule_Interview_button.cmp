@@ -1,0 +1,42 @@
+<aura:component controller="InterviewSchedulerController" implements="force:appHostable,force:hasSObjectName,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="sObjectName" type="String" />
+    <aura:attribute name="messagee" type="String" />
+    <aura:attribute name="buttonLabel" type="String" />
+    <aura:attribute name="showButton" type="boolean" default="true"/>
+    <aura:attribute name="showMsg" type="boolean" default="false"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="force:refreshView" action="{!c.doInit}"/>
+
+    <div style="width:100%;background-color:white;border-radius:5px;" > 
+        <table style="width:100%">
+            <tr style="width:100%">
+                <aura:if isTrue="{!v.showButton}">
+                    <td style="padding:10px;width: 1%;white-space: nowrap;cursor:pointer;">
+                        <lightning:icon iconName="standard:business_hours" alternativeText="Schedule Interview" title="Schedule Interview" />
+                    </td>
+                    <td style="padding:10px;background-color:#0070d2;color:white;font-size:18px;font-weight:bold">
+                        <div style="width:100%;letter-spacing: 2px;cursor:pointer;border-radius:5px;" onclick="{!c.navigateToInterviewCalender}">
+                            <center>
+                                {!v.buttonLabel}
+                            </center>
+                        </div>
+                    </td>
+                    
+                </aura:if>
+                <aura:if isTrue="{!v.showMsg}">
+                    <td style="padding:10px;width: 1%;white-space: nowrap;">
+                        <lightning:icon iconName="action:announcement" alternativeText="Info" title="Info" />
+                    </td>
+                    <td style="padding:10px;color:black;font-size:13px;">
+                        <div style="width:100%;border-radius:5px;">
+                                {!v.messagee}
+                        </div>
+                    </td>
+                </aura:if>
+            </tr>
+        </table>
+    </div>
+</aura:component>

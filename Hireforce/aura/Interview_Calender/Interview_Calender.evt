@@ -1,0 +1,15 @@
+<aura:event type="COMPONENT" description="by this event we are pass data in Interview calendar" access="global">
+    <aura:attribute name="recordByEvent" type="object"/>
+    <aura:attribute name="interviewRoundName" type="string"/> 
+    <aura:attribute name="interviewerId" type="string"/> 
+    <aura:attribute name="interviewerName" type="string"/>
+    <aura:attribute name="dropStartTime" type="string"/>
+    <aura:attribute name="dropEndTime" type="string"/>
+    <aura:attribute name="multiusestringg" type="string"/>
+    <aura:attribute name="interviewDroppedStrthr" type="Integer"/> 
+    <aura:attribute name="interviewDraggedStrthr" type="Integer"/> 
+    <aura:attribute name="mousepostx" type="Integer"/>
+    <aura:attribute name="mouseposty" type="Integer"/>
+    <aura:attribute name="availdurr" type="Integer"/>
+    <aura:attribute name="intrvwdate" type="string"/> 
+</aura:event>

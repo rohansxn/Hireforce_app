@@ -1,0 +1,7 @@
+Hi {!User.Name},
+
+Please find the below job posting recalled form approval queue.
+{!Job__c.Link}
+
+Regards,
+HR Admin

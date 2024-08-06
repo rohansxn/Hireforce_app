@@ -1,0 +1,329 @@
+.divcss1.THIS{
+    position: absolute;
+    width:100%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divheightclass.THIS
+{
+    height:50%;
+}
+.divcss2.THIS {
+    position: absolute;
+    width:201.5%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss3.THIS {
+    position: absolute;
+    width:304%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss4.THIS {
+    position: absolute;
+    width:407%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss5.THIS {
+    position: absolute;
+    width:509%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss6.THIS {
+    position: absolute;
+    width:611%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss7.THIS {
+    position: absolute;
+    width:714%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss8.THIS {
+    position: absolute;
+    width:818%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss9.THIS {
+    position: absolute;
+    width:920%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss10.THIS {
+    position: absolute;
+    width:1021%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss11.THIS {
+    position: absolute;
+    width:1124%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss12.THIS {
+    position: absolute;
+    width:1226%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss13.THIS {
+    position: absolute;
+    width:1329%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss14.THIS {
+    position: absolute;
+    width:1431%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss15.THIS {
+    position: absolute;
+    width:1533%;
+    height:100%;
+    padding : 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss16.THIS {
+    position: absolute;
+    width:1636%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss17.THIS {
+    position: absolute;
+    width:1738%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss18.THIS {
+    position: absolute;
+    width:1841%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss19.THIS {
+    position: absolute;
+    width:1943%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss20.THIS {
+    position: absolute;
+    width:2046%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss21.THIS {
+    position: absolute;
+    width:2148%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss22.THIS {
+    position: absolute;
+    width:2250%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss23.THIS {
+    position: absolute;
+    width:2353%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.divcss24.THIS {
+    position: absolute;
+    width:2456%;
+    height:100%;
+    padding: 1px;
+    z-index:3;
+    top:0px;
+    cursor: pointer;
+}
+.THIS .infdivvhiddenstyl{
+    position:absolute;
+    z-index:10001;
+    top:20px;
+    left:15px;
+    padding:5px;
+    padding-left:7px;
+    width:200px;
+    background-color:#2573A5;
+    color:white;
+    font-size:13px;
+    border-radius:3px;
+    visibility:hidden;
+}
+.THIS .infdivvstyl{
+    position:absolute;
+    z-index:10001;
+    top:20px;
+    left:15px;
+    padding:5px;
+    padding-left:7px;
+    width:200px;
+    background-color:#2573A5;
+    color:white;
+    font-size:13px;
+    border-radius:3px;
+    visibility:visible;
+}
+.THIS .innerstyldiv1{
+    width:100%;
+    height:100%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.THIS .innerstyldiv2{
+    width:45px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.THIS .innerstyldiv3{
+    width:65px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.THIS .innerstyldiv4{
+    width:90px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.THIS .innerstyldiv5{
+    width:110px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.THIS .innerstyldiv6{
+    width:125px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.THIS .innerstyldiv7{
+    width:150px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.THIS .innerstyldiv8{
+    width:165px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.THIS .innerstyldiv9{
+    width:185px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.THIS .innerstyldiv10{
+    width:205px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.THIS .nonestatusstyl{
+    background-color:#dddddd;
+}
+.THIS .schdlstatusstyl{
+    background-color:#ffcc33;
+}
+.THIS .dispatchstatsstyl{
+    background-color:#e27001;
+}
+.THIS .enrotstsstyl{
+    background-color:#9999ff;
+}
+.THIS .noshowstsstyl{
+    background-color:red;
+}
+.THIS .inprogstsstyl{
+    background-color:orange;
+}
+.THIS .completedstsstyl{
+    background-color:#78c953;
+}
+.THIS .cancledstsstyl{
+    background-color:#999999;
+}
+.THIS .canntcompstsstyl{
+    background-color:#ff6666;
+}
+.THIS [draggable=true] {
+    -khtml-user-drag: element;
+}

@@ -1,0 +1,27 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global" >
+    <aura:attribute name="application" type="Application__c" default="{'sobjectType':'Application__c'}"/>
+    <aura:attribute name="intervieww" type="Interview__c" default="{'sobjectType':'Interview__c'}"/>
+    
+    <aura:attribute name="showappinf" type="boolean" default="false"/>
+    <aura:registerEvent name="ApplicationDragEvent" type="c:Interview_Calender"/>
+    <div draggable="true" ondragstart="{!c.drag}" class="divcss" onclick="{!c.showappInff}">
+        <aura:if isTrue="{!v.showappinf}">
+            [-]<br/>
+            <span style="font-size:10px;color:green;"> Applicant Name </span><br/>
+            <b>{!v.application.Name}</b><br/>
+            <span style="font-size:10px;color:green;"> Applicant Email</span> <br/>
+            <b> {!v.application.Applicant_Email__c}</b><br/>
+            <span style="font-size:10px;color:green;">Job</span> <br/>
+            <b> {!v.application.Job__r.Name}</b><br/>
+            <span style="font-size:10px;color:green;">Application Date</span> <br/>
+            <b> <ui:outputDate value="{!v.application.Application_Date__c}" /></b><br/>
+            <aura:set attribute="else">
+                [+]&nbsp;{!v.application.Name}
+                <aura:if isTrue="{!v.application.Job__r.Name != null}">
+                    ,&nbsp;{!v.application.Job__r.Name}
+                </aura:if>
+            </aura:set>
+        </aura:if>
+    </div>
+</aura:component>

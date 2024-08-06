@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Interviewer List">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </template>
+        <div class="scrollable-container">
+            <template if:true={data}>
+                <lightning-datatable class="custom-datatable" key-field="Id" data={data} columns={columns} onrowaction={handleRowAction} hide-checkbox-column show-row-number-column="true">
+                </lightning-datatable>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,7 @@
+Hi {!Job__c.Approver__c},
+
+Please find the below job posting submitted for your approval.
+{!Job__c.Link}
+
+Regards,
+HR Admin

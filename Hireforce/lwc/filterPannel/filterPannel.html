@@ -1,0 +1,25 @@
+<template>
+    <div class="filter-jobs-container">
+        <h3 class="filter-jobs-heading">Filter Jobs</h3>
+        <div class="slds-p-around_medium filter-jobs-content">
+            <lightning-input label="Search by Job Title" value={titleSearchText} onchange={handleTitleSearchTextChange} placeholder="Enter job title to search">
+            </lightning-input>
+
+            <c-multi-select-picklist label="Country" required="false" showpills="true" role="country" onselectedcountry={populateCountryList}>
+            </c-multi-select-picklist>
+
+            <lightning-combobox name="JobTypes" label="Job Type" multiple value={selectedJobType} options={jobTypeOptions} onchange={handleJobTypeChange}>
+            </lightning-combobox>
+
+            <lightning-combobox name="Department" label="Department" multiple value={selectedDepartments} options={departmentOptions} onchange={handleDepartmentChange}>
+            </lightning-combobox>
+
+            <div class="alignCenter">
+                <center>
+                    <lightning-button variant="brand" label="Apply Filters" onclick={applyFilters}></lightning-button> &nbsp;
+                    <span><lightning-button variant="neutral" label="Clear Filters" onclick={clearFilters}></lightning-button></span>
+                </center>
+            </div>
+        </div>
+    </div>
+</template>

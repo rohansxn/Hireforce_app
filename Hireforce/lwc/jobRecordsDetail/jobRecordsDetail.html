@@ -1,0 +1,48 @@
+<template>
+    <template if:true={jobRecord}>
+        <div class="slds-box slds-theme_default job-detail-container">
+            <header class="job-header">
+                <h1 class="slds-text-heading_large job-title">{jobRecord.Name}</h1>
+                <p class="slds-text-body_regular job-department">
+                    <lightning-icon icon-name="utility:groups" alternative-text="Department" title="Department"></lightning-icon>
+                    <b>Department:</b> {jobRecord.Department__c}
+                </p>
+                <p class="slds-text-body_regular job-location">
+                    <lightning-icon icon-name="utility:location" alternative-text="Location" title="Location"></lightning-icon>
+                    <b>Location:</b> {jobRecord.Country__c} - {jobRecord.State_Province__c}
+                </p>
+                <p class="slds-text-body_regular job-level">
+                    <lightning-icon icon-name="utility:level_up" alternative-text="Job Level" title="Job Level"></lightning-icon>
+                    <b>Job Level:</b> {jobRecord.Job_Level__c}
+                </p>
+            </header>
+            <div class="job-content">
+                <template if:true={displaySkills}>
+                    <section class="skills-required">
+                        <h2 class="slds-text-heading_medium skills-heading">Skills Required</h2>
+                        <ul class="slds-list_horizontal slds-wrap">
+                            <template for:each={skillNames} for:item="skillName">
+                                <li key={skillName} class="slds-item slds-m-right_small">
+                                    <svg class="check-icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.293 9.293a1 1 0 0 1 1.414 0l4-4a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 0-1.414z"/>
+                                    </svg>
+                                    <span class="slds-text-body_regular">{skillName}</span>
+                                </li>
+                            </template>
+                        </ul>
+                    </section>
+                </template>
+                <section class="roles-responsibilities">
+                    <b>Roles/Responsibilities:</b>
+                    <lightning-formatted-rich-text value={htmlContent}></lightning-formatted-rich-text>
+                </section>
+            </div>
+            <template if:true={displayfooter}>
+                <footer class="job-footer">
+                    <lightning-button variant="brand" label="Apply" onclick={handleApply}></lightning-button> &nbsp;
+                    <lightning-button variant="neutral" label="Cancel" onclick={cancelApplication}></lightning-button>
+                </footer>
+            </template>
+        </div>
+    </template>
+</template>

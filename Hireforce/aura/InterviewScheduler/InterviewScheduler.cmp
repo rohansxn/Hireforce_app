@@ -1,0 +1,571 @@
+<aura:component controller="InterviewSchedulerController" implements="force:appHostable,lightning:isUrlAddressable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="interviwerPageNum" type="Integer" default="1"/>
+    <aura:attribute name="isLastIntervwrSet" type="boolean" default="false"/>
+    <aura:attribute name="searchByroundOrHiringMngrName" type="string"/>
+    <aura:attribute name="hiringmngrId" type="string" default="003a5000006ou8PAAQ"/>
+    <aura:attribute name="tempDroppedRoundName" type="string"/>
+    <aura:attribute name="receivedValue" type="string"/>
+    <aura:attribute name="tempinterviewerName" type="string"/>
+    <aura:attribute name="tempdropStartTime" type="string"/>
+    <aura:attribute name="tempdropEndTime" type="string"/>
+    <aura:attribute name="appOrJobOrHrEvtId" type="string"/>
+    <aura:attribute name="navFrom" type="string"/>
+    <aura:attribute name="dailyhourslst" type="list"/>
+    <aura:attribute name="jobWrplsitt" type="list"/>
+    <aura:attribute name="weekdayname" type="string"/>
+    <aura:attribute name="selecteddtfrmpickr" type="date"/>
+    <aura:attribute name="monthname" type="string"/>
+    <aura:attribute name="tempinterviewwwdrpeddatestrng" type="string"/>
+    <aura:attribute name="tempapplicationdrpeddatestrng" type="string"/>
+    <aura:attribute name="dayy" type="string"/>
+    <aura:attribute name="yearr" type="string"/>
+    <aura:attribute name="fsldaywrapp" type="object"/>
+    <aura:attribute name="tempintervvwrp" type="object" />
+    <aura:attribute name="hideapppanelInterviwer" type="boolean" default="false"/>
+    <aura:attribute name="showprocessing" type="boolean" default="false"/>
+    <aura:attribute name="showloading" type="boolean" default="true"/>
+    <aura:attribute name="showapplicationJobfilter" type="boolean" default="true"/>
+    <aura:attribute name="showapplicationfilters" type="boolean" default="true"/>
+    <aura:attribute name="showapplicationpanell" type="boolean" default="true"/>
+    <aura:attribute name="isapplicationdragevent" type="boolean" default="false"/>
+    <aura:attribute name="showinformationdiv" type="boolean" default="false"/>
+    <aura:attribute name="infintervieww" type="Interview__c" default="{'sobjectType':'Interview__c'}"/>
+    <aura:attribute name="tempdragintrv" type="Interview__c" default="{'sobjectType':'Interview__c'}"/>
+    <aura:attribute name="intervwdraggedintervwrid" type="string"/>
+    <aura:attribute name="intervwdraggeddt" type="string"/>
+    <aura:attribute name="intervwdraggedstrthouur" type="Integer" />
+    <aura:attribute name="oprtstrthr" type="string"/>
+    <aura:attribute name="oprtendhr" type="string"/>
+    <aura:attribute name="hrdurationlist" type="list"/>
+    <aura:attribute name="selectedduratt" type="string" default="1"/>
+    <aura:attribute name="applicationdropedintrvwrid" type="string"/>
+    <aura:attribute name="applicationdropedstrthr" type="Integer"/>
+    <aura:attribute name="mousssspx" type="Integer"/>
+    <aura:attribute name="moussspy" type="Integer"/>
+    <aura:attribute name="mousssspxstsfdbk" type="Integer"/>
+    <aura:attribute name="moussspystsfdbk" type="Integer"/>
+    <aura:attribute name="searchtext" type="string"/>
+    <aura:attribute name="intrvstatusvals" type="List" />
+    <aura:attribute name="selectdstatuss" type="String" default="None"/>
+    <aura:attribute name="decisionvals" type="List" />
+    <aura:attribute name="selectddecision" type="String" default="None"/>
+    <aura:attribute name="fdbckkkk" type="String" />
+    <aura:attribute name="stsorfeedback" type="String" />
+    <aura:attribute name="dlverydatee" type="date"/>
+    <aura:attribute name="allapplicationStatuses" type="String[]" />
+    <aura:attribute name="selectedapplicationSts" type="String" />
+    <aura:attribute name="intrvdte" type="date"/>
+    <aura:attribute name="tdheight" type="Integer" default="530"/>
+    <aura:attribute name="tddivheight" type="Integer" default="510"/>
+    <aura:attribute name="applicationsdivhght" type="Integer" default="200"/>
+    <aura:attribute name="schdlrheight" type="Integer" default="310"/>
+    <aura:handler name="InterviewDropEvent" event="c:Interview_Calender" action="{!c.handledropeventfromhourcomp}"/>
+    <aura:handler name="InterviewDragEvent" event="c:Interview_Calender" action="{!c.handledrageventfromintervwcomp}"/>
+    <aura:handler name="ApplicationDragEvent" event="c:Interview_Calender" action="{!c.handleapplicationdragevent}"/>
+    <aura:handler name="showinterviewdetails" event="c:Interview_Calender" action="{!c.handleshoworhidediveevent}"/>
+    <aura:handler name="showoptionlistt" event="c:Interview_Calender" action="{!c.showstatusdeleteaddfeedback}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div style="border-radius:5px;background-color:#F3FDFD;height:100%;" id="mnoutdiv">
+        <aura:if isTrue="{!v.showloading}" >
+            <center>
+                <div class="cssload-container">
+                    <div class="cssload-loro">
+                        <div class="cssload-circ"></div>
+                        <div class="cssload-circ3"></div>
+                        <div class="cssload-circ5"></div>
+                        <div class="cssload-circ7"></div>
+                        <div class="cssload-ojo"></div>
+                    </div>
+                </div>
+            </center>
+            <aura:set attribute="else">
+                <table style="{!'height:'+v.tdheight+'px;'}">
+                    <tr>
+                        <aura:if isTrue="{!v.showapplicationpanell}" >
+                            <td style="{!'padding:1rem;width:27%;border-right: 2px #dddbda solid;vertical-align:top;height:'+v.tdheight+'px;'}">
+                                <div style="{!'width:100%;background-color:#e1e9ed;border-radius:0.5rem;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);height:'+v.tddivheight+'px;'}">
+                                    <div style="padding:0.5rem;background-color:#667db6;border-radius:0.5rem;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                        <center><span style="color:white;font-weight:bold;">
+                                            Available Applications
+                                            </span></center>
+                                    </div>
+                                    <div class="hidepointer" onclick="{!c.hideorshowapplicationsection}">
+                                        Hide Me
+                                    </div><br/>
+                                    <aura:if isTrue="{!v.showapplicationfilters}" >
+                                        <div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-left:1rem;margin-right:1rem;margin-top:5px;background-color:white;border-radius:0.25rem;padding:1rem;">
+                                            <aura:if isTrue="{!v.showapplicationJobfilter}">
+                                                <span class="slds-form-element__label">Search Applications by job info</span>
+                                                <div class="tooltip1">
+                                                    <lightning:icon iconName="utility:info" size="xx-small" class="infoiconstyl"/>
+                                                    <span class="tooltiptext1">
+                                                        Enter a "Job Name" or "Job Type" or "Job Title" and click "Fetch Applications" button to show applications associated to those jobs.
+                                                    </span>
+                                                </div><br/>
+                                                <ui:inputText value="{!v.searchtext}" /><br/>
+                                            </aura:if>
+                                            <span class="slds-form-element__label">Filter Applications by status</span>
+                                            <ui:inputSelect value="{!v.selectedapplicationSts}">
+                                                <aura:iteration items="{!v.allapplicationStatuses}" var="vew">
+                                                    <ui:inputSelectOption text="{!vew}" label="{!vew}" />
+                                                </aura:iteration>
+                                            </ui:inputSelect><br/>
+                                            <lightning:button label="Fetch Applications" onclick="{!c.getmatchapplicationsss}"
+                                                              class="fetchbutnstyl"/>
+                                        </div><br></br>
+                                    </aura:if>
+                                    <aura:if isTrue="{!v.jobWrplsitt.length > 0}" >
+                                        <div class="slds-scrollable--y" style="{!'box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-top:5px;margin-left:1rem;margin-right:1rem;background-color:white;border-radius:0.25rem;height:'+v.applicationsdivhght+'px;'}">
+                                            <aura:iteration items="{!v.jobWrplsitt}" var="jobwrp">
+                                                <table width="100%;">
+                                                    <tr style="height:1px;"></tr>
+                                                    <tr width="100%;">
+                                                        <td style="width:100%">
+                                                        	<div title="{!jobwrp.jobb.Id}" class="jobdivcss" onclick="{!c.showapplst}">
+                                                                <table style="width:100%" title="{!jobwrp.jobb.Id}" onclick="{!c.showapplst}">
+                                                                    <tr style="width:100%" title="{!jobwrp.jobb.Id}" onclick="{!c.showapplst}">
+                                                                        <td style="width:2%"></td>
+                                                                        <td style="width:4%" title="{!jobwrp.jobb.Id}" onclick="{!c.showapplst}">
+                                                                            <div title="{!jobwrp.jobb.Id}" onclick="{!c.showapplst}">
+                                                                                <aura:if isTrue="{!jobwrp.showapps}">
+                                                                                    <div style="width:5px;height:5px;border-right: 1px solid #929292;border-bottom: 1px solid #929292;transform: rotate(45deg);" 
+                                                                                         title="{!jobwrp.jobb.Id}" onclick="{!c.showapplst}"></div>
+                                                                                    <aura:set attribute="else">
+                                                                                        <div style="width:5px;height:5px;border-left: 1px solid #929292;border-bottom: 1px solid #929292;transform: rotate(225deg);" 
+                                                                                             title="{!jobwrp.jobb.Id}" onclick="{!c.showapplst}"></div>
+                                                                                    </aura:set>
+                                                                                </aura:if>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td style="width:94%" title="{!jobwrp.jobb.Id}" onclick="{!c.showapplst}">
+                                                                            <div title="{!jobwrp.jobb.Id}" onclick="{!c.showapplst}">
+                                                                                <span style="font-size:10px;color:green;"> Job Name </span><br/>
+                                                                                <b>{!jobwrp.jobb.Name}</b><br/>
+                                                                                <aura:if isTrue="{!jobwrp.jobb.Job_Description__c != null}">
+                                                                                    <span style="font-size:10px;color:green;"> Job Description</span> <br/>
+                                                                                    <b>{!jobwrp.jobb.Job_Description__c}</b><br/>
+                                                                                </aura:if>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <aura:if isTrue="{!jobwrp.showapps}" >
+                                                        <tr width="100%;">
+                                                            <td width="100%;">
+                                                                <aura:iteration items="{!jobwrp.appList}" var="applcationn">
+                                                                    <table width="100%;">
+                                                                        <tr style="height:10px;">
+                                                                            <td style="width:5%;border-right: 1px #b3b0af solid">
+                                                                            </td>
+                                                                            <td width="5%;">
+                                                                            </td>
+                                                                            <td width="80%;">
+                                                                            </td>
+                                                                            <td width="10%;">
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr width="100%;vertical-align:top;">
+                                                                            <td style="width:5%;">
+                                                                            </td>
+                                                                            <td style="width:5%;vertical-align:top;">
+                                                                                <div style="position:relative;bottom:5px;width:100%;height:14px;border-left: 1px #b3b0af solid;border-bottom: 1px #b3b0af solid"></div>
+                                                                            </td>
+                                                                            <td style="width:80%;">
+                                                                                <c:Application_Object application="{!applcationn}"/>
+                                                                            </td>
+                                                                            <td width="10%;">
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </aura:iteration>
+                                                            </td>
+                                                        </tr>
+                                                    </aura:if>
+                                                    <tr style="height:15px;">
+                                                    </tr>
+                                                </table> 
+                                            </aura:iteration>
+                                        </div><br></br>
+                                        <aura:set attribute="else">
+                                            <center>
+                                                <span style="margin-left:30px;margin-top:50px;font-size:13px;">
+                                                    No Job Applications found.
+                                                </span>
+                                            </center>
+                                        </aura:set>
+                                    </aura:if>
+                                </div>
+                            </td>
+                        </aura:if>
+                        <td style="{!'width:73%;padding:1rem;vertical-align:top;height:'+v.tdheight+'px;'}">
+                            <div style="{!'width:100%;background-color:#e1e9ed;border-radius:0.5rem;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);height:'+v.tddivheight+'px;'}">
+                                <div style="padding:0.5rem;background-color:#667db6;border-radius:0.5rem;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td style="width:20%;">
+                                                <div class="tooltip">
+                                                    <lightning:icon iconName="utility:info" size="x-small" class="infoiconstyl"/>
+                                                    <span class="tooltiptext">
+                                                        In calendar to see brief information of an interview hover mouse on the interview.<br/>
+                                                        To change timings of an interview drag it and drop on required time slot.<br/>
+                                                        To schedule interview for an application, drag that application from left panel and drop it on
+                                                        required time slot of calendar.
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td style="width:60%;">
+                                                <center>
+                                                    <span style="color:white;font-weight:bold;">
+                                                        {!v.fsldaywrapp.dsplyhdng}, {!v.yearr}
+                                                    </span>
+                                                </center>
+                                            </td>
+                                            <td style="width:20%;">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <aura:if isTrue="{!v.hideapppanelInterviwer == false}" >
+                                    <aura:if isTrue="{!v.showapplicationpanell == false}" >
+                                        <div class="pointer" onclick="{!c.hideorshowapplicationsection}">
+                                            Show Applications
+                                        </div>
+                                        <aura:set attribute="else">
+                                            <br></br>
+                                        </aura:set>
+                                    </aura:if>
+                                </aura:if>
+                                <aura:if isTrue="{!v.fsldaywrapp.intrvwRoundWrapLst.length > 0}" >
+                                    <div style="border-radius:0.25rem;margin-left:1rem;margin-right:1rem;">
+                                        <table style="width:100%;">
+                                            <tr style="width:100%;">
+                                                <aura:if isTrue="{!v.navFrom != 'hiringevent'}">
+                                                    <td style="width:150px;">
+                                                        <div style="padding:0.5rem;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius:0.25rem;background-color: white;">
+                                                            <span class="slds-form-element__label">Select Date</span>
+                                                            <ui:inputDate value="{!v.selecteddtfrmpickr}" displayDatePicker="true" change="{!c.getschdatesintrvs}"/>
+                                                        </div>
+                                                    </td>
+                                                </aura:if>
+                                                <td style="">
+                                                    <aura:if isTrue="{!v.navFrom != 'Interviewer'}">
+                                                        <div style="width:300px;padding:0.5rem;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius:0.25rem;background-color: white;" aura:Id="filterIntrvDiv">
+                                                            <span style="text-align:left;" class="slds-form-element__label">Filter Interviewers</span>
+                                                            <div class="tooltip1">
+                                                                <lightning:icon iconName="utility:info" size="xx-small" class="infoiconstyl"/>
+                                                                <span class="tooltiptext1">
+                                                                    Filter Interviewers by Name Or Hiring Manager or Interview Round.
+                                                                </span>
+                                                            </div><br/>
+                                                            <table>
+                                                                <tr>
+                                                                    <td style="padding-right:8px;">
+                                                                        <ui:inputText value="{!v.searchByroundOrHiringMngrName}" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <lightning:buttonIcon iconName="utility:filterList" onclick="{!c.filterVieww}" class="filterbutnstyl" alternativeText="filterList"/> 
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </aura:if>
+                                                </td>
+                                                <td style="width:210px;">
+                                                    <div style="font-size:10px;padding:0.5rem;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius:0.25rem;background-color: white;">
+                                                        <table >
+                                                            <tr >
+                                                                <td style="width:20px;">
+                                                                    <div style="height:10px;width:10px;background-color:#ffcc33;">
+                                                                    </div>
+                                                                </td>
+                                                                <td style="width:70px;">
+                                                                    Invite Sent
+                                                                </td>
+                                                                <td style="width:20px;">
+                                                                    <div style="height:10px;width:10px;background-color:#e27001;">
+                                                                    </div>
+                                                                </td>
+                                                                <td style="width:100px;">
+                                                                    Confirmed
+                                                                </td>
+                                                            </tr>
+                                                            <tr >
+                                                                <td>
+                                                                    <div style="height:10px;width:10px;background-color:red;">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    No Show
+                                                                </td>
+                                                                <td>
+                                                                    <div style="height:10px;width:10px;background-color:orange;">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    In Progress
+                                                                </td>
+                                                            </tr>
+                                                            <tr >
+                                                                <td>
+                                                                    <div style="height:10px;width:10px;background-color:#78c953;">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    Completed
+                                                                </td>
+                                                                <td>
+                                                                    <div style="height:10px;width:10px;background-color:#999999;">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    Canceled
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div style="padding-left:1rem;padding-right:1rem;padding-top:0.7rem;">
+                                        <table style="width:100%;">
+                                            <tr style="width:100%;">
+                                                <td style="width:33.33%;"><span class="slds-float_left">
+                                                    <lightning:buttonIcon iconName="utility:left" alternativeText="Fetch previous set of Interviewers" title="Fetch previous set of Interviewers" disabled="{!v.interviwerPageNum == 1}"
+                                                                          variant="border-filled" onclick="{!c.fetchpreviousdayintervws}" />
+                                                    </span></td>
+                                                <td style="width:33.33%;">
+                                                    <center>
+                                                        <aura:if isTrue="{!v.showprocessing}">
+                                                            <span style="background-color:#5E986A;color:white;padding:4px;border-radius:3px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                                                Processing....
+                                                            </span>
+                                                        </aura:if>
+                                                    </center>
+                                                    <aura:if isTrue="{!v.showinformationdiv}">
+                                                        <div style="{!'top:'+v.moussspy+'px;left:'+v.mousssspx+'px;'}" class="infdivvstyl">
+                                                            <span style="font-size:11px;"> Applicant Name </span><br/>
+                                                            <b>{!v.infintervieww.Application__r.Name}</b><br/>
+                                                            <span style="font-size:11px;"> Interviewer Name</span> <br/>
+                                                            <b> {!v.infintervieww.Interviewer__r.Name}</b><br/>
+                                                            <span style="font-size:11px;"> Job</span> <br/>
+                                                            <b> {!v.infintervieww.Application__r.Job__r.Name}</b><br/>
+                                                            <span style="font-size:11px;"> Round Name</span> <br/>
+                                                            <b> {!v.infintervieww.Round_Name__c}</b>
+                                                        </div>
+                                                    </aura:if>
+                                                    <div style="{!'top:'+v.moussspy+'px;left:'+v.mousssspx+'px;'}" class="rightclickdiv"
+                                                         aura:Id="optionsdivvvv">
+                                                        <span style="float:right;background-color:#f8f8f8;" onclick="{!c.hideoptionsssdivv}">
+                                                            <lightning:icon iconName="utility:close" size="xx-small" class="clsiconstyyyyyl"/></span>
+                                                        <table style="width:100%;background-color:white;border: 1px #dddbda solid;">
+                                                            <tr>
+                                                                <td style="border-bottom: 1px #dddbda dashed;padding:8px;padding-top:12px;padding-bottom:12px;" title="Change Status" onclick="{!c.showeditordelorfeedbackopt}">
+                                                                    <lightning:icon iconName="utility:edit" size="xx-small"/>&nbsp;&nbsp;Change Status
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-bottom: 1px #dddbda dashed;padding:8px;padding-top:12px;padding-bottom:12px;" title="Add Feedback" onclick="{!c.showeditordelorfeedbackopt}">
+                                                                    <lightning:icon iconName="utility:note" size="xx-small"/>&nbsp;&nbsp;Add Feedback
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-bottom: 1px #dddbda dashed;padding:8px;padding-top:12px;padding-bottom:12px;" title="View" onclick="{!c.showeditordelorfeedbackopt}">
+                                                                    <lightning:icon iconName="utility:preview" size="xx-small"/>&nbsp;&nbsp;View
+                                                                </td>
+                                                            </tr>
+                                                            <aura:if isTrue="{!v.navFrom != 'Interviewer'}">
+                                                                <tr>
+                                                                    <td style="padding:8px;padding-top:12px;padding-bottom:12px;" title="Delete" onclick="{!c.showeditordelorfeedbackopt}">
+                                                                        <lightning:icon iconName="utility:delete" size="xx-small"/>&nbsp;&nbsp; Delete
+                                                                    </td>
+                                                                </tr>
+                                                            </aura:if>
+                                                        </table>
+                                                    </div>
+                                                    <div style="{!'top:'+v.moussspystsfdbk+'px;left:'+v.mousssspxstsfdbk+'px;'}" class="editstatusoraddfeedbackdiv" aura:Id="editorfeedbackdivv">
+                                                        <span style="float:right;background-color:#f8f8f8;cursor:pointer;" onclick="{!c.hideeeditordelorfeedbackopt}"><lightning:icon iconName="utility:close" size="xx-small" class="clsiconstyyyyyl"/></span>
+                                                        <br/>
+                                                        <div style="border: 1px #dddbda solid;padding:1rem;width:100%;background-color:white;">
+                                                            <aura:if isTrue="{!v.stsorfeedback == 'Change Status'}">
+                                                                <label class="slds-form-element__label" >Status<abbr class="slds-required " title="required">*</abbr></label>
+                                                                <ui:inputSelect value="{!v.selectdstatuss}">
+                                                                    <aura:iteration items="{!v.intrvstatusvals}" var="sts">
+                                                                        <ui:inputSelectOption text="{!sts}" label="{!sts}" />
+                                                                    </aura:iteration><br/>
+                                                                </ui:inputSelect><br/>
+                                                                <lightning:button label="Update Status" onclick="{!c.getstsupdatedd}" class="editstaddfdbckbutnstyl"/>
+                                                            </aura:if>
+                                                            <aura:if isTrue="{!v.stsorfeedback == 'Add Feedback'}">
+                                                                <label class="slds-form-element__label" >Decision<abbr class="slds-required " title="required">*</abbr></label>
+                                                                <ui:inputSelect value="{!v.selectddecision}">
+                                                                    <aura:iteration items="{!v.decisionvals}" var="decision">
+                                                                        <ui:inputSelectOption text="{!decision}" label="{!decision}" />
+                                                                    </aura:iteration><br/>
+                                                                </ui:inputSelect><br/>
+                                                                <label class="slds-form-element__label" >Feedback<abbr class="slds-required " title="required">*</abbr></label>
+                                                                <ui:inputTextarea value="{!v.fdbckkkk}" rows="4" /><br/>
+                                                                <lightning:button label="Save" onclick="{!c.getfdbckadded}" class="editstaddfdbckbutnstyl"/>
+                                                            </aura:if>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td style="width:33.33%;"><span class="slds-float_right">
+                                                    <lightning:buttonIcon iconName="utility:refresh" alternativeText="Refresh"
+                                                                          variant="border-filled" onclick="{!c.refrreshVieww}" />
+                                                    <lightning:buttonIcon iconName="utility:right" alternativeText="Fetch Next set of Interviewers" title="Fetch Next set of Interviewers" disabled="{!v.isLastIntervwrSet}"
+                                                                          variant="border-filled" onclick="{!c.fetchnextdayintervws}" />
+                                                    </span></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="sclrclssy" style="{!'padding-left:1rem;padding-right:0.2rem;paddingbottom:1rem;padding-top:0.3rem;height:'+v.schdlrheight+'px;'}">
+                                        <div style="border-radius:0.25rem;background-color:white;box-shadow: 0 4px 8px 0 rgba(0, 0,
+                                                    0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);padding:0.5rem;">
+                                            <table style="width:100%;border: 1px #dddbda solid;border-bottom: 1px #AEB6BF
+                                                          solid;background-color:#F8F9F9;">
+                                                <tr>
+                                                    <td style="width:15%;">
+                                                    </td>
+                                                    <td style="width:85%;">
+                                                        <table>
+                                                            <tr>
+                                                                <td style="border-left: 1px #dddbda solid;background-color:white;
+                                                                           padding:2px;color:white">
+                                                                    <center><span style="color:#212F3C;font-size:11px;">
+                                                                        {!v.fsldaywrapp.dsplyhdng}, {!v.yearr}</span></center>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <table style="width:100%;">
+                                                            <tr style="width:100%;">
+                                                                <aura:iteration items="{!v.fsldaywrapp.tmlblslst}" var="hr">
+                                                                    <td style="width:4.16666667%;border-left: 1px #dddbda solid;border-top:1px
+                                                                               #dddbda solid;">
+                                                                        <center><span style="color:#212F3C;font-size:11px;">{!hr}</span></center>
+                                                                    </td>
+                                                                </aura:iteration>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <aura:iteration items="{!v.fsldaywrapp.intrvwRoundWrapLst}" var="roundwrpitem">
+                                                <table style="width:100%;border: 1px #D2E2F1 solid;">
+                                                    <tr style="width:100%;">
+                                                        <td style="background-color:#D2E2F1;border-bottom: 1px #AEB6BF solid;border-right: 1px #AEB6BF solid;border-left: 1px #AEB6BF solid;">
+                                                            <div style="background-color:#D2E2F1;width:100%;height:100%;padding-top:0.6rem;padding-bottom:0.6rem;padding-left:0.5rem;padding-right:0.5rem;cursor: pointer;" title="{!roundwrpitem.roundName}" onclick="{!c.showroundinterviewers}">
+                                                                <table title="{!roundwrpitem.roundName}" style="width:100%;" onclick="{!c.showroundinterviewers}">
+                                                                    <tr title="{!roundwrpitem.roundName}" onclick="{!c.showroundinterviewers}">
+                                                                        <td style="width:1%;" title="{!roundwrpitem.roundName}" onclick="{!c.showroundinterviewers}">
+                                                                        </td>
+                                                                        <td style="width:1.5%;" title="{!roundwrpitem.roundName}" onclick="{!c.showroundinterviewers}">
+                                                                            <aura:if isTrue="{!roundwrpitem.showRoundInterviewrs}">
+                                                                                <div style="width:5px;height:5px;border-right: 1px solid #929292;border-bottom: 1px solid #929292;transform: rotate(45deg);" 
+                                                                                     title="{!roundwrpitem.roundName}" onclick="{!c.showroundinterviewers}"></div>
+                                                                                <aura:set attribute="else">
+                                                                                    <div style="width:5px;height:5px;border-left: 1px solid #929292;border-bottom: 1px solid #929292;transform: rotate(225deg);" 
+                                                                                         title="{!roundwrpitem.roundName}" onclick="{!c.showroundinterviewers}"></div>
+                                                                                </aura:set>
+                                                                            </aura:if>
+                                                                        </td>
+                                                                        <td style="width:97.5%;" title="{!roundwrpitem.roundName}" onclick="{!c.showroundinterviewers}">
+                                                                            <div style="width:100%;font-size:12px;" title="{!roundwrpitem.roundName}"
+                                                                                 onclick="{!c.showroundinterviewers}">
+                                                                                {!roundwrpitem.roundName}
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <aura:if isTrue="{!roundwrpitem.showRoundInterviewrs}">
+                                                    <aura:iteration items="{!roundwrpitem.intrvwRndInterviewrsWrpLst}" var="roundintervwr">
+                                                        <table style="width:100%;">
+                                                            <tr style="width:100%;">
+                                                                <td style="width:15%;height:40px;border-left: 1px #dddbda solid;border-bottom:1px #AEB6BF solid;background-color:white;">
+                                                                    <table style="display: inline-block">
+                                                                        <tr>
+                                                                            <td style="padding-left:0.3rem;padding-right:0.4rem;">
+                                                                               
+                                                                                <lightning:buttonIcon iconName="utility:event" variant="border-filled"
+                                                                                                      size="small" iconClass="icnclrclass" class="icnbackgclass"/>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span style="color:#212F3C;font-size:12px;text-align:left;">
+                                                                                    <ui:outputDate value="{!roundintervwr.interviewerName}"/>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                                <td style="width:85%;border-right:1px #dddbda solid;border-bottom:1px
+                                                                           #AEB6BF solid;">
+                                                                    <table style="width:100%;">
+                                                                        <tr style="width:100%;">
+                                                                            <aura:iteration items="{!roundintervwr.hrwraplst}" var="hrrwrap">
+                                                                                <aura:if isTrue="{!hrrwrap.isoperatinghour}">
+                                                                                    <c:Interviewer_Hour_Cmp clndrdateee="{!roundintervwr.wkdat}" hourrwrapp="{!hrrwrap}" datestringg="{!roundintervwr.wekdatee}" 
+                                                                                                            navFrom="{!v.navFrom}" roundName="{!roundwrpitem.roundName}" interviewerr="{!roundintervwr.interviewer}" aura:id="hrcompp"/>
+                                                                                </aura:if>
+                                                                            </aura:iteration>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </aura:iteration>
+                                                </aura:if>
+                                            </aura:iteration>
+                                        </div>
+                                    </div>
+                                    <aura:set attribute="else">
+                                        <div style="margin-top:20%;font-size:18px;">
+                                            <center>
+                                            	<lightning:icon iconName="action:announcement" alternativeText="Info" title="Info" />&nbsp;&nbsp;
+                                               No interviewers are available. Please add a few. 
+                                            </center>
+                                        </div>
+                                    </aura:set>
+                                </aura:if>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal sldsmodal_large">
+                    <div class="slds-modal__container" style="width:15%;">
+                        <div class="slds-modal__header">
+                            Interview Details
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                            <div>
+                                <span style="font-size:11px;color:grey;">Applicant Name</span><br/>
+                                <b>{!v.tempdragintrv.Name}</b><br/>
+                                <span style="font-size:11px;color:grey;">Interviewer Name</span> <br/>
+                                <b> {!v.tempinterviewerName}</b><br/>
+                                <span style="font-size:11px;color:grey;">Round</span> <br/>
+                                <b> {!v.tempDroppedRoundName}</b><br/>
+								<span style="font-size:11px;color:grey;">Time</span> <br/>
+                                <b>  {!v.fsldaywrapp.dsplyhdng}, {!v.yearr} &nbsp;&nbsp;{!v.tempdropStartTime} 
+									 to {!v.tempdropEndTime} 
+                               	</b><br/>
+                            </div>
+                        </div>
+                        <div class="slds-modal__footer">
+                            <lightning:button class="slds-button slds-button_brand" onclick="{!c.savenewintervieww}">
+                                Schedule</lightning:button>
+                            <ui:button label="Close" press="{!c.closeModal}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-backdrop " aura:id="Modalbackdrop"></div>
+            </aura:set>
+        </aura:if>
+    </div>
+</aura:component>

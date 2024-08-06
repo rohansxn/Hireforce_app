@@ -1,0 +1,38 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global" >
+    <aura:attribute name="intervww" type="object"/> 
+    <aura:attribute name="interviewr" type="Interviewer__c" default="{'sobjectType': 'Interviewer__c'}"/>
+    <aura:attribute name="availlength" type="Integer"/>
+    <aura:attribute name="durattionn" type="Integer"/>
+    <aura:attribute name="hrcomppwidthh" type="Integer"/>
+    <aura:attribute name="strthrr" type="Integer"/>
+    <aura:attribute name="intervwwwidth" type="Integer"/>
+    <aura:attribute name="intervwwvisibility" type="string" default="hidden"/>
+    <aura:registerEvent name="InterviewDragEvent" type="c:Interview_Calender"/>
+    <aura:registerEvent name="showinterviewdetails" type="c:Interview_Calender"/>
+    <aura:registerEvent name="showoptionlistt" type="c:Interview_Calender"/>
+    <aura:method name="stylesetter" action="{!c.onloadforInterviewRec}" description="to apply style to intervw div">
+    </aura:method>
+    <aura:if isTrue="{!v.intervww.isReschedulable}">
+        <div draggable="true" ondragstart="{!c.drag}" class="" aura:Id="maindivv" 
+             style="{!'position:absolute;height:100%;padding: 1px;z-index:3;top:0px;cursor: pointer;width:'+v.intervwwwidth+'px;visibility:'+v.intervwwvisibility}" 
+             onclick="{!c.handleOpenNewWindowWithRecordId}" oncontextmenu="{!c.showstatusdeleteaddfeedback}">
+            <div class="" style="z-index:4;width:100%;height:100%;border-radius:2px;padding:4px;font-size:10px;fontweight:bold;" onmouseover="{!c.showInf}" onmouseout="{!c.hideInf}" aura:Id="interviewdivv">
+                <div class="" aura:Id="innerdivv">
+                    {!v.intervww.intrvw.Name}<br/>
+                </div>
+            </div>
+        </div>
+        <aura:set attribute="else">
+            <div class="" aura:Id="maindivv" 
+                 style="{!'position:absolute;height:100%;padding: 1px;z-index:3;top:0px;cursor: pointer;width:'+v.intervwwwidth+'px;visibility:'+v.intervwwvisibility}" 
+                 onclick="{!c.handleOpenNewWindowWithRecordId}" oncontextmenu="{!c.showstatusdeleteaddfeedback}">
+                <div class="" style="z-index:4;width:100%;height:100%;border-radius:2px;padding:4px;font-size:10px;fontweight:bold;" onmouseover="{!c.showInf}" onmouseout="{!c.hideInf}" aura:Id="interviewdivv">
+                    <div class="" aura:Id="innerdivv">
+                        {!v.intervww.intrvw.Name}<br/>
+                    </div>
+                </div>
+            </div>
+        </aura:set>
+    </aura:if>
+</aura:component>

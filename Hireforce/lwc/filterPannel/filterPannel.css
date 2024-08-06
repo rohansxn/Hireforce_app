@@ -1,0 +1,33 @@
+.filter-jobs-container {
+    background-color: #f5f5f5; /* Light grey background */
+    max-width: 800px;
+    margin: 0 auto;
+    max-height: 450px;
+    padding: 10px;
+}
+
+.filter-jobs-heading {
+    text-align: center;
+    color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 2px;
+}
+
+.filter-jobs-content {
+    background-color: #ffffff;
+    padding: 1rem 1rem 0.8rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 404px;
+}
+
+.slds-p-around_medium {
+    display: flex;
+    flex-direction: column;
+}
+
+.alignCenter
+{
+    padding-top: 1px;
+    align-items: center;
+}

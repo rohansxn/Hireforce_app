@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Book_Interviews</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Book Interviews</shortDescription>
+        <value>Book and Manage Interviews</value>
+    </labels>
+    <labels>
+        <fullName>Book_and_Manage_Interview</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Book and Manage Interview</shortDescription>
+        <value>Book and Manage Interview</value>
+    </labels>
+    <labels>
+        <fullName>Enroll_Interviewers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enroll Interviewers</shortDescription>
+        <value>Enroll Interviewers</value>
+    </labels>
+    <labels>
+        <fullName>Interviewers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Interviewers</shortDescription>
+        <value>Interviewers</value>
+    </labels>
+    <labels>
+        <fullName>Manage_My_Interviews</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manage My Interviews</shortDescription>
+        <value>Manage My Interviews</value>
+    </labels>
+</CustomLabels>
